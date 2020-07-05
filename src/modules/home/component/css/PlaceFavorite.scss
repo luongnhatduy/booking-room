@@ -1,0 +1,49 @@
+.place-favorite-view{
+    width: 100%;
+    height: 100%;
+    padding: 20px 25px;
+    margin-top: 65px;
+    .slick-list{
+        margin-left: 12px;
+    }
+
+    .slick-slide div { outline: none; }
+    .slick-arrow{
+        width: 50px;
+        height: 50px;
+        z-index: 10000;
+    }
+    .slick-arrow:before{
+        font-size: 50px !important;
+        color: #1a3465;
+        opacity : 1
+    }
+
+    strong{
+        font-size: 22px;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;;
+
+    }
+    .slide{
+        margin-top: 10px;
+        img{
+            border-radius: 10px;
+        }
+        .place{
+            position :absolute;
+            bottom: 30px;
+            display: flex;
+            align-items: flex-start;
+            justify-content: flex-start;
+            padding-left: 30px;
+            span{
+                font-weight: 600;
+                font-size: 20px;
+                color: white;
+            }
+        }
+    }
+   
+
+}
+

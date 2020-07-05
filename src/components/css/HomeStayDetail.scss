@@ -1,0 +1,78 @@
+
+.containe{
+    margin-top: 50px;
+    padding-left: 100px;
+    padding-right: 100px;
+    .contai-left{
+        height: 1000px;
+        
+        .description{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            span{
+                margin-top: 5px;
+            }
+            .title{
+                font-size: 30px;
+                font-weight: bold;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                display: -webkit-box;
+                -webkit-line-clamp: 2; /* number of lines to show */
+                -webkit-box-orient: vertical;
+                font-family: Luxstay;
+            }
+            .descrip{
+                font-size: 15px;
+            }
+            
+            .address{
+                font-size: 15px;
+            }
+        }
+    }
+    
+    .contai-right{
+        height: 1000px;
+        .book{
+            width: 100%;
+            height: 400px;
+            background: red;
+            
+            .text-input{
+                border : 1px solid #ebebeb;
+                margin-top: 10px;
+                width: 100%;
+                height: 40px;
+                border-radius: 5px;
+                padding-left: 20px;
+            }
+            .bt-book{
+                margin-top: 50px;
+                width: 100%;
+                height: 50px;
+                border-radius: 5px;
+                background-image: linear-gradient(90deg,#f65e38 0,#f68a39 51%,#f65e38);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background-size : 200% auto;
+
+                span{
+                    color: white;
+                    font-weight: bold;
+                    font-size: 16px;
+                }
+            }
+        }
+        .price{
+            font-weight: bold;
+            font-style: italic;
+            font-size: 17px;
+        }
+        
+    }
+
+}
