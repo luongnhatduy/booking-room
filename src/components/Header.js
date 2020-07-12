@@ -10,7 +10,7 @@ import { useHistory } from "react-router-dom";
 const Header = ({}) => {
   const history = useHistory();
   const [logined, setLogined] = useState(false);
-
+  const [textSearch,setTextSearch] = useState(" ");
 
   const handleClick = ()=> {
     history.push("/");
@@ -33,6 +33,17 @@ const Header = ({}) => {
       localStorage.removeItem('user');
   },[])
 
+  const handleChangeText = useCallback((event) =>{
+    setTextSearch(event.target.value);
+  },[]);
+
+  const handleSearch = useCallback(() =>{
+    history.push("/place_home_stay",{placeSearch : textSearch });
+  },[history, textSearch]);
+
+
+
+
   return (
    <nav class="header navbar navbar-expand-lg navbar-light border-bottom">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
@@ -41,8 +52,8 @@ const Header = ({}) => {
     <img onClick={handleClick} src={roompng} alt="" class="room"/>
     <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
      <form class="form-inline my-2 my-lg-0">
-        <input class="form-control mr-sm-2" type="search" placeholder="Tìm kiếm" aria-label="Search"/>
-        <button type="button" class="button-search ml-2 btn">
+        <input class="form-control mr-sm-2" onChange={handleChangeText} type="search" placeholder="Tìm kiếm" aria-label="Search"/>
+        <button type="button" onClick={handleSearch} class="button-search ml-2 btn">
           <img class='icon-search' src={iconSearch} alt=""/>
         </button>
 
