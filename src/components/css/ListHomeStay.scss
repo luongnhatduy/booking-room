@@ -10,15 +10,14 @@
     }
     .row{
         margin-top: 10px;
-        margin-left: 0 !important;
+        margin-left: 10px !important;
         margin-right: 0 !important;
-        // display: flex;
-        // justify-content: space-between;
-        float: left;
+        display: flex;
+        justify-content: flex-start;
     }
     .item{
         margin-bottom: 20px;
-        margin-right: 12px;
+        margin-right: 11px;
         display: flex;
         flex-direction: column;
         width: calc(19vw - 10px);

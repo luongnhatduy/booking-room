@@ -10,8 +10,6 @@ import Map from 'pigeon-maps'
 import Marker from 'pigeon-marker'
 import Overlay from 'pigeon-overlay'
 
-const AnyReactComponent = ({ text }) => <div>{text}</div>;
-
 const HomeStayDetail = ({}) => {
   const history = useHistory();
   const [date,setDate] = useState("04/07/2020 -> 07/07/2020");
@@ -19,6 +17,8 @@ const HomeStayDetail = ({}) => {
 
   const location = useLocation();
   const homeStay = location.state.homeStay;
+  const place = location.state.place;
+
   var settings = {
     dots: true,
     infinite: true,
@@ -27,7 +27,12 @@ const HomeStayDetail = ({}) => {
     slidesToScroll: 1,
   };
 
-  const handleClick = useCallback((homeStay) =>{
+  const handleClick = useCallback(async(homeStay) =>{
+    const user =  JSON.parse(await localStorage.getItem('user'));
+    if(!user){
+      history.push("/login",{homeStay : homeStay ,date : date, count : count});
+      return;
+    }
     history.push("/booking_information",{homeStay : homeStay ,date : date, count : count});
   },[count, date, history]);
 
@@ -66,8 +71,8 @@ const HomeStayDetail = ({}) => {
                     <span class="address">{homeStay.address}</span>
                   </div>
 
-                  <Map center={[21.039618, 105.812600]} zoom={12} width={600} height={400}>
-                    <Marker anchor={[21.039618, 105.812600]} payload={1} onClick={({ event, anchor, payload }) => {}} />
+                  <Map center={[place[0].lat, place[0].lon]} zoom={14} width={600} height={400}>
+                    <Marker anchor={[place[0].lat, place[0].lon]} payload={1} onClick={({ event, anchor, payload }) => {}} />
                   </Map>
               </div>
               <div class="col-md-3 col-xs-12 contai-right">
@@ -82,7 +87,7 @@ const HomeStayDetail = ({}) => {
                   </div>
               </div>
           </div>
-      ),[count, date, handleChangeCount, handleChangeDate, handleClick, homeStay])}
+      ),[date, handleChangeCount, handleChangeDate, handleClick, homeStay, place])}
     </div>
   );
 };

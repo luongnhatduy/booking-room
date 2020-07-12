@@ -3,41 +3,58 @@ export const PLACE_FAVORITE=[
         id : 0,
         place : 'Hà Nội',
         img : 'https://cdn.luxstay.com/home/location/location_1_1559734709.png',
+        lat : 21.029828,
+        lon : 105.836144
     },
     {
         id : 1,
         place : 'Sài Gòn',
-        img : 'https://cdn.luxstay.com/home/location/location_5_1559735011.png'
+        img : 'https://cdn.luxstay.com/home/location/location_5_1559735011.png',
+        lat : 10.791091,
+        lon : 106.702057
     },
     {
         id : 2,
         place : 'Hội An',
-        img : 'https://cdn.luxstay.com/home/location/location_6_1559786202.png'
+        img : 'https://cdn.luxstay.com/home/location/location_6_1559786202.png',
+        lat : 15.879979,
+        lon : 108.328150
     },
     {
         id : 3,
         place : 'Đà Lạt',
-        img : 'https://cdn.luxstay.com/home/location/location_4_1559786177.png'
+        img : 'https://cdn.luxstay.com/home/location/location_4_1559786177.png',
+        lat : 11.951452,
+        lon : 108.454696
     },
     {
         id : 4,
         place : 'Đà Nẵng',
-        img : 'https://cdn.luxstay.com/home/location/location_16_1559303173.png'
+        img : 'https://cdn.luxstay.com/home/location/location_16_1559303173.png',
+        lat : 16.057004,
+        lon : 108.208788
     },
     {
         id : 5,
         place : 'Nha Trang',
-        img : 'https://cdn.luxstay.com/home/location/location_1_1559373089.png'
+        img : 'https://cdn.luxstay.com/home/location/location_1_1559373089.png',
+        lat : 12.245551,
+        lon : 109.195924
+
     },
     {
         id : 6,
         place : 'Vũng Tàu',
-        img : 'https://cdn.luxstay.com/home/location/location_10_1559303118.png'
+        img : 'https://cdn.luxstay.com/home/location/location_10_1559303118.png',
+        lat : 10.413260,
+        lon : 107.131028
     },
     {
         id : 7,
         place : 'Quảng Ninh',
-        img : 'https://cdn.luxstay.com/home/location/location_5_1559786196.png'
+        img : 'https://cdn.luxstay.com/home/location/location_5_1559786196.png',
+        lat : 20.956165,
+        lon : 107.049526
     }
 ]
 

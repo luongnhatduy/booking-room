@@ -23,6 +23,8 @@ const BookingInformation = ({place}) => {
     },[homeStay.price])
 
     const handleClick = useCallback(async() =>{
+
+        const dateNow = new Date();
         const data = {
             title : homeStay.title,
             price : homeStay.price,
@@ -31,7 +33,9 @@ const BookingInformation = ({place}) => {
             date : date,
             countGuest : count,
             countMoney : countMoney,
-            img : homeStay.img
+            img : homeStay.img,
+            dayBooking : dateNow.toUTCString(),
+            accountId :  JSON.parse(await localStorage.getItem('user'))?.id 
         }
         if(localStorage.getItem('booked') !== null){
             console.log(data,'data');
@@ -39,7 +43,7 @@ const BookingInformation = ({place}) => {
         }else{
             localStorage.setItem('booked', JSON.stringify([data]));
         }
-        //  localStorage.removeItem('booked');
+          // localStorage.removeItem('booked');
         history.push("/");
 
          console.log(JSON.parse(await localStorage.getItem('booked')),'đât');

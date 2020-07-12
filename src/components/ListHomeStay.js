@@ -1,6 +1,6 @@
 import React, { useMemo, useEffect, useCallback ,useState } from "react";
 import "./css/ListHomeStay.scss";
-import { HOME_STAY } from "../ultils/constants";
+import { HOME_STAY, PLACE_FAVORITE } from "../ultils/constants";
 import { useHistory } from "react-router-dom";
 
 const ListHomeStay = ({place}) => {
@@ -17,7 +17,8 @@ const ListHomeStay = ({place}) => {
   },[place]);
 
   const handleClick = useCallback((homeStay) =>{
-    history.push("/home_stay_detail",{homeStay : homeStay});
+    const place = PLACE_FAVORITE.filter((i)=> i.id === homeStay.placeId)
+    history.push("/home_stay_detail",{homeStay : homeStay, place : place});
   },[]);
 
   return (

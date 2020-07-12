@@ -8,12 +8,17 @@ const Booked = ({ place }) => {
   const [listbooked, setListBooked] = useState([]);
 
   useEffect(() => {
+    // localStorage.removeItem('booked');
     setList();
   }, []);
 
-  const setList = useCallback(async () => {
-    setListBooked(JSON.parse(await localStorage.getItem("booked")));
-    console.log(JSON.parse(await localStorage.getItem("booked")), "boooked");
+  const setList = useCallback(async () => { 
+    console.log(JSON.parse(await localStorage.getItem('user')),'idididi');
+    const userId = JSON.parse(await localStorage.getItem('user'))?.id
+    const listBooked = JSON.parse(await localStorage.getItem("booked")) || [];
+    const listBookedUser = listBooked.filter( i => i.accountId == userId);
+    setListBooked(listBookedUser.reverse() || []);
+    console.log(userId,listBooked, "boooked");
   }, []);
 
   return (
@@ -41,6 +46,7 @@ const Booked = ({ place }) => {
                     <span>Tổng tiền:</span>
                     <span> {Number(item.countMoney) * item.countDate} đ</span>
                   </div>
+                  <span class="address">Ngày đặt : {item.dayBooking}</span>
                 </div>
               </div>
             ))}
