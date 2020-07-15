@@ -7,15 +7,15 @@ import del from "../../../assets/img/delete.png"
 
 const HomeStay = ({}) => {
   const history = useHistory();
-  const [accounts, setAccounts] = useState([]);
+  const [homeStays, setHomeStays] = useState([]);
 
   useEffect(() => {
     getData();
   }, []);
 
   const getData = useCallback(async () => {
-    setAccounts(JSON.parse(await localStorage.getItem("account")));
-    console.log("data", JSON.parse(await localStorage.getItem("account")));
+    setHomeStays(JSON.parse(await localStorage.getItem("homeStay")));
+    console.log("data", JSON.parse(await localStorage.getItem("homeStay")));
   }, []);
 
   return (
@@ -27,20 +27,28 @@ const HomeStay = ({}) => {
               <thead class="thead-dark">
                 <tr>
                   <th scope="col">#</th>
-                  <th scope="col">Họ Tên</th>
-                  <th scope="col">Email</th>
-                  <th scope="col">SDT</th>
-                  <img type="button" class='plus' src={plus} alt=""/>
+                  <th scope="col">Tiêu đề</th>
+                  <th scope="col">Mô tả</th>
+                  <th scope="col">Giá</th>
+                  <th scope="col">Địa điểm</th>
+                  <th scope="col">Ảnh mô tả</th>
 
+                  <img type="button" class='plus' src={plus} alt=""/>
                 </tr>
               </thead>
               <tbody>
-                {accounts.map((item, index) => (
+                {homeStays.map((item, index) => (
                   <tr>
                     <th scope="row">{index}</th>
-                    <td>{item.userName}</td>
-                    <td>{item.email}</td>
-                    <td>{item.phoneNumber}</td>
+                    <td>{item.title}</td>
+                    <td>{item.description}</td>
+                    <td>{item.price}</td>
+                    <td>{item.address}</td>
+                    <td>
+                       <img type="button" class='img' src={item.img} alt=""/>
+                    </td>
+
+
                     <img type="button" class='edit' src={edit} alt=""/>
                     <img type="button" class='delete' src={del} alt=""/>
 
@@ -50,7 +58,7 @@ const HomeStay = ({}) => {
             </table>
           </div>
         ),
-        [accounts]
+        [homeStays]
       )}
     </div>
   );

@@ -54,8 +54,30 @@
         right: 22px;
         margin-top : 15px
     }
+    .img{
+        height: 70px;
+        width: 100px;
+    }
+    .modal-body{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        .text-input{
+            border : 1px solid #ebebeb;
+            margin-top: 6px;
+            margin-bottom: 5px;
+            border-radius: 10px;
+            height: 30px;
+            width: 100%;
+        }
+    }
 }
 
 .cc{
     background: red !important;
+}
+
+td{
+    max-width: calc(9vw);
 }

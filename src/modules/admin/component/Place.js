@@ -7,16 +7,16 @@ import del from "../../../assets/img/delete.png"
 
 const Place = ({}) => {
   const history = useHistory();
-  const [accounts, setAccounts] = useState([]);
+  const [places, setPlaces] = useState([]);
 
   useEffect(() => {
     getData();
   }, []);
 
   const getData = useCallback(async () => {
-    setAccounts(JSON.parse(await localStorage.getItem("account")));
-    console.log("data", JSON.parse(await localStorage.getItem("account")));
-  }, []);
+    setPlaces(JSON.parse(await localStorage.getItem("place")));
+    console.log("data", JSON.parse(await localStorage.getItem("place")));
+  }, [setPlaces]);
 
   return (
     <div>
@@ -34,12 +34,13 @@ const Place = ({}) => {
                 </tr>
               </thead>
               <tbody>
-                {accounts.map((item, index) => (
+                {places.map((item, index) => (
                   <tr>
                     <th scope="row">{index}</th>
-                    <td>{item.userName}</td>
-                    <td>{item.email}</td>
-                    <td>{item.phoneNumber}</td>
+                    <td>{item.place}</td>
+                    <td>
+                       <img type="button" class='img' src={item.img} alt=""/>
+                    </td>
                     <img type="button" class='edit' src={edit} alt=""/>
                     <img type="button" class='delete' src={del} alt=""/>
 
@@ -49,7 +50,7 @@ const Place = ({}) => {
             </table>
           </div>
         ),
-        [accounts]
+        [places]
       )}
     </div>
   );
