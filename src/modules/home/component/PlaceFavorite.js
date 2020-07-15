@@ -1,4 +1,4 @@
-import React, { useMemo,useCallback } from "react";
+import React, { useMemo,useCallback,useEffect, useState } from "react";
 import "./css/PlaceFavorite.scss";
 import Slider from "react-slick";
 import { PLACE_FAVORITE } from "./../../../ultils/constants";
@@ -6,6 +6,7 @@ import { useHistory } from "react-router-dom";
 
 const PlaceFavorite = ({}) => {
   const history = useHistory();
+  const [data,setData] = useState([]);
 
   var settings = {
     dots: false,
@@ -15,9 +16,18 @@ const PlaceFavorite = ({}) => {
     slidesToScroll: 1,
   };
 
+  useEffect(()=>{
+    getData();
+  },[])
+
+  const getData = useCallback(async()=>{
+  //  localStorage.setItem('account', JSON.stringify(PLACE_FAVORITE));
+   setData(JSON.parse(await localStorage.getItem('place')));
+  },[])
+
   const handleClick = useCallback((place) =>{
     history.push("/place_home_stay",{place : place});
-  },[])
+  },[history])
 
   return (
     <div class="place-favorite-view">
@@ -28,7 +38,7 @@ const PlaceFavorite = ({}) => {
               Lựa chọn những Homestay hoàn hảo tại các địa điểm được yêu thích nhất
             </strong>
             <Slider {...settings}>
-              {PLACE_FAVORITE.map((item) => (
+              {data.map((item) => (
                 <div class="slide" onClick={()=>handleClick(item)}>
                   <img
                     style={{ width: "95%", height: "calc(45vh)" }}
@@ -43,7 +53,7 @@ const PlaceFavorite = ({}) => {
             </Slider>
           </div>
         ),
-        []
+        [data, handleClick, settings]
       )}
     </div>
   );

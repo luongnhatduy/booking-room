@@ -377,6 +377,11 @@ export const HOME_STAY=[
     
 ]
 
+export const SUPER_ADMIN = {
+    email : "admin",
+    passWord : "admin"
+}
+
 export const IMG_DATA=[
     {
         img : 'https://cdn.luxstay.com/rooms/14863/large/1536423894_IMG_9700.jpg',    

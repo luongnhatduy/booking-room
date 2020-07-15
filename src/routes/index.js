@@ -7,6 +7,7 @@ import Login from "../modules/login/component/Login";
 import BookingInformation from "../components/BookingInformation";
 import Booked from "../components/Booked";
 import SignUp from "../modules/signup/component/SignUp";
+import Admin from "../modules/admin/component/Admin";
 const Routes = () => {
   return (
     <Switch>
@@ -17,6 +18,8 @@ const Routes = () => {
       <Route exact path="/home_stay_detail" component={HomeStayDetail} />
       <Route exact path="/booking_information" component={BookingInformation} />
       <Route exact path="/booked" component={Booked} />
+      <Route exact path="/admin" component={Admin} />
+
 
     </Switch>
   );
