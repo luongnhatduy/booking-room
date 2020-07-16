@@ -21,10 +21,9 @@ const Header = ({}) => {
   }, [])
 
   const checkLogin = useCallback(async()=>{
-    console.log(JSON.parse(await localStorage.getItem('account')),'idididi');
+    console.log(JSON.parse(await localStorage.getItem('account')),'list account');
 
     const user =  JSON.parse(await localStorage.getItem('user'));
-    console.log(user,'user');
     if (user) setLogined(true);
   },[])
 

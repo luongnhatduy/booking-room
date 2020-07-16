@@ -7,6 +7,7 @@ import Place from "./Place";
 import * as $ from 'jquery';
 
 import styles from "./css/Admin.scss";
+import Booked from "./Booked";
 
 
 const Admin = ({}) => {
@@ -32,6 +33,8 @@ const Admin = ({}) => {
               <div type="button" id="account" onClick={()=> selectContent('account')} class="item shadow  rounded"> Tài khoản </div>
               <div type="button" id="place" onClick={()=> selectContent('place')} class="item shadow  rounded"> Địa điểm </div>
               <div type="button" id="homeStay" onClick={()=> selectContent('homeStay')} class="item shadow  rounded"> HomeStay </div>
+              <div type="button" id="booked" onClick={()=> selectContent('booked')} class="item shadow  rounded"> Đã đặt </div>
+
             </div>
           </div>
         ),
@@ -44,6 +47,8 @@ const Admin = ({}) => {
            {content === 'account' && <Account/>}
            {content === 'homeStay' && <HomeStay/>}
            {content === 'place' && <Place/>}
+           {content === 'booked' && <Booked/>}
+
           </div>
         ),
         [content]

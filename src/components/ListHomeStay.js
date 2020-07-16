@@ -5,41 +5,17 @@ import { useHistory } from "react-router-dom";
 import InfiniteScroll from "react-infinite-scroll-component";
 
 const ListHomeStay = ({ place, placeSearch }) => {
+  
   const [listHomeStay, setListHomeStay] = useState([]);
   const [listData, setListData] = useState([]);
   const [loadMore, setLoadMore] = useState(true);
   const history = useHistory();
 
-  useEffect(() => {
-    getData();
-  }, []);
-
-  const getData = useCallback(async () => {
-    // localStorage.setItem("homeStay", JSON.stringify(HOME_STAY));
-    const dataa = await localStorage.getItem("homeStay");
-    filterData(JSON.parse(dataa));
-  }, []);
-
-  const filterData = useCallback((data) => {
-    if (placeSearch) {
-      search();
-    } else {
-      if (place && place === "all") {
-        setListHomeStay(data);
-        setListData(data.filter((i, index) => index < 10));
-      } else {
-        const dataHomeStay = data.filter((i) => i.placeId === place.id);
-        if (dataHomeStay.length < 10) setLoadMore(false);
-        setListHomeStay(dataHomeStay);
-        setListData(dataHomeStay.filter((i, index) => index < 10));
-      }
-    }
-  }, [place, placeSearch]);
-
   const search = useCallback(() => {
     const placeName = delete_accents(placeSearch);
     const placeNameArray = placeName.toLowerCase().split(" ");
-
+ 
+    
     const rest = HOME_STAY.reduce((array, item) => {
       let countKeyWord = 0;
       placeNameArray.forEach((i) => {
@@ -62,9 +38,42 @@ const ListHomeStay = ({ place, placeSearch }) => {
       return b.countKeyWord - a.countKeyWord;
     });
     console.log(rest, "rest");
+    
+    if (rest.length < 10) setLoadMore(false);
 
-    setListHomeStay(rest);
-  }, [delete_accents, placeSearch]);
+     setListHomeStay(rest);
+     setListData(rest.filter((i, index) => index < 10));
+  }, [delete_accents, placeSearch ,setListHomeStay]);
+  
+  const filterData = useCallback((data) => {
+    if (placeSearch) {
+      search();
+    } else {
+      if (place && place === "all") {
+        setListHomeStay(data);
+        setListData(data.filter((i, index) => index < 10));
+      } else {
+        const dataHomeStay = data.filter((i) => i.placeId === place.id);
+        if (dataHomeStay.length < 10) setLoadMore(false);
+        setListHomeStay(dataHomeStay);
+        setListData(dataHomeStay.filter((i, index) => index < 10));
+      }
+    }
+  }, [place, placeSearch, search]);
+
+  const getData = useCallback( async() => {
+    // localStorage.setItem("homeStay", JSON.stringify(HOME_STAY));
+    const dataa = await localStorage.getItem("homeStay");
+    filterData(JSON.parse(dataa));
+  }, [filterData]);
+
+  useEffect(() => {
+    getData();
+  }, []);
+
+  
+
+  
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   function delete_accents(str) {

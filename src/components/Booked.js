@@ -7,19 +7,21 @@ import Header from "./Header";
 const Booked = ({ place }) => {
   const [listbooked, setListBooked] = useState([]);
 
-  useEffect(() => {
-    // localStorage.removeItem('booked');
-    setList();
-  }, []);
-
   const setList = useCallback(async () => { 
     console.log(JSON.parse(await localStorage.getItem('user')),'idididi');
     const userId = JSON.parse(await localStorage.getItem('user'))?.id
     const listBooked = JSON.parse(await localStorage.getItem("booked")) || [];
     const listBookedUser = listBooked.filter( i => i.accountId == userId);
     setListBooked(listBookedUser.reverse() || []);
-    console.log(userId,listBooked, "boooked");
+    console.log(userId,listBookedUser, "boooked");
   }, []);
+
+  useEffect(() => {
+    // localStorage.removeItem('booked');
+    setList();
+  }, [setList]);
+
+  
 
   return (
     <div>
