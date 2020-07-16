@@ -4,6 +4,7 @@
     .slidebar-menu{
         width: 20%;
         height: calc(100vh);
+        position: fixed;
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
@@ -30,6 +31,7 @@
     }
     .content{
         width: 80%;
+        margin-left: 20%;
         height: calc(100vh);
     }
     .plus{
@@ -74,6 +76,12 @@
     }
     .text-dropdown{
         margin-left: 3px;
+    }
+    .alert{
+        position: absolute;
+        top : 50px;
+        right: 0;
+        z-index: 10000;
     }
 }
 

@@ -15,6 +15,9 @@ const Account = ({}) => {
   const [userName, setUserName] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [typeModal ,setTypeModal] = useState();
+  const [showAlert, setShowAlert] = useState(false);
+  const [alert, setAlert] = useState("")
+
 
   useEffect(() => {
     getData();
@@ -26,19 +29,23 @@ const Account = ({}) => {
   }, []);
 
   const handleChangeEmail = useCallback((event) =>{
+    setShowAlert(false);
     setEmail(event.target.value);
   },[setEmail]);
 
 
   const handleChangeUserName = useCallback((event) =>{
+    setShowAlert(false);
     setUserName(event.target.value);
   },[setUserName]);
 
   const handleChangePhone = useCallback((event) =>{
+    setShowAlert(false);
     setPhoneNumber(event.target.value);
   },[setPhoneNumber]);
 
   const handleChangePass = useCallback((event) =>{
+    setShowAlert(false);
     setPassWord(event.target.value);
   },[setPassWord]);
 
@@ -61,7 +68,13 @@ const Account = ({}) => {
   },[getData]);
 
   const updateAccount = useCallback(async()=>{
+   
     if(typeModal === "Thêm tài khoản"){
+      if (email === "" || passWord === "" || userName === "" || phoneNumber === ""){
+        setShowAlert(true);
+        setAlert("Vui lòng điền đủ thông tin!!!");
+        return;
+      }
       const data = {
         email : email,
         passWord : passWord,
@@ -70,11 +83,24 @@ const Account = ({}) => {
         id : JSON.parse(await localStorage.getItem('account'))?.length || 0
       }
       if(localStorage.getItem('account') !== null){
+          const listAcc =JSON.parse(await localStorage.getItem('account'));
+          const listEmail = listAcc.map(i => i.email);
+          
+          if (listEmail.indexOf(data.email) !== -1){
+            setAlert('tài khoản đã tồn tại');
+            setShowAlert(true);
+            return;
+          } 
           localStorage.setItem('account',JSON.stringify(JSON.parse(await localStorage.getItem('account')).concat(data)));
       }else{
           localStorage.setItem('account', JSON.stringify([data]));
       }
       getData();
+      return;
+    }
+    if (email === "" || userName === "" || phoneNumber === ""){
+      setShowAlert(true);
+      setAlert("Vui lòng điền đủ thông tin!!!");
       return;
     }
     const data = {
@@ -97,6 +123,13 @@ const Account = ({}) => {
       {useMemo(
         () => (
           <div>
+            {
+                !!showAlert &&
+                  ( <div class="alert alert-danger" role="alert">
+                      {alert}
+                    </div>
+                  )
+              }
             <table class="table">
               <thead class="thead-dark">
                 <tr>
@@ -126,11 +159,12 @@ const Account = ({}) => {
             </table>
           </div>
         ),
-        [accounts, delAccount, openModal]
+        [accounts, alert, delAccount, openModal, showAlert]
       )}
 
       {useMemo(()=>(
         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+         
           <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-header">

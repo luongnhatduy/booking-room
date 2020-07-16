@@ -26,7 +26,7 @@ const Admin = ({}) => {
     <div class="view-container">
       {useMemo(
         () => (
-          <div class="slidebar-menu shadow-lg p-3 mb-5 bg-white rounded">
+          <div class="slidebar-menu shadow-lg  p-3 mb-5 bg-white rounded">
             <h1>Administration</h1>
             <div class="menu">
               <div type="button" id="account" onClick={()=> selectContent('account')} class="item shadow  rounded"> Tài khoản </div>

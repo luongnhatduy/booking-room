@@ -87,7 +87,7 @@ const SignUp = ({}) => {
                           <input class="text-input " onChange={handleChangePhone} placeholder="Số điện thoại" />
 
                           <div type="button" onClick={handleSignUp} class="bt-login">
-                            <span> Đăng kis</span>
+                            <span> Đăng kí</span>
                           </div>
               </div>
             </div>
