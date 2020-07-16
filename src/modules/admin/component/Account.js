@@ -26,8 +26,6 @@ const Account = ({}) => {
   }, []);
 
   const handleChangeEmail = useCallback((event) =>{
-    console.log(event.target.value,'event.target.value');
-    
     setEmail(event.target.value);
   },[setEmail]);
 
